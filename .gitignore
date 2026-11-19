@@ -1,6 +1,14 @@
 # Subspace project files
 .subspace/
 
+# Private project files: this repo is public, so keep notes and working files off GitHub
+CLAUDE.local.md
+CLAUDE.md
+working/
+*_build/
+*.md
+!README.md
+
 # OS generated files
 .DS_Store
 .DS_Store?

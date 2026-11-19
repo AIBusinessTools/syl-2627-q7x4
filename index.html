@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<title>McCombs AI Courses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#BF5700; --orange-dark:#9A4600; --orange-tint:#FBEFE6;
+  --charcoal:#333F48; --ink:#1F262B; --muted:#5C6770; --line:#E3E0DC;
+  --bg:#FFFFFF; --panel:#F8F6F3; --grad:#005F86; --grad-tint:#E3F0F5;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5}
+a{color:var(--orange)}
+header{background:var(--orange);color:#fff}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:14px 0;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;border-bottom:1px solid rgba(255,255,255,.25)}
+.hero{padding:36px 0 40px}
+.hero h1{margin:0 0 14px;font-size:clamp(28px,4.5vw,42px);line-height:1.15;font-weight:800;letter-spacing:-.01em}
+.hero p{margin:0;max-width:720px;font-size:17px;color:#FFF3EA}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 8px}
+.filters button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--charcoal);background:#fff;color:var(--charcoal);border-radius:999px;padding:6px 16px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--charcoal);color:#fff}
+section{margin:34px 0}
+section h2{font-size:21px;margin:0 0 4px;color:var(--charcoal);font-weight:700;padding-left:12px;border-left:5px solid var(--orange)}
+section .lede{margin:6px 0 0 17px;color:var(--muted);font-size:15px;max-width:760px}
+.count{color:var(--muted);font-weight:500;font-size:15px}
+ul.list{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:150px 1fr auto;gap:6px 20px;padding:16px 4px;border-bottom:1px solid var(--line);align-items:start}
+.row[hidden]{display:none}
+.code{font-weight:700;color:var(--orange-dark);font-size:14px;padding-top:2px}
+.title{font-weight:600;font-size:17px;line-height:1.3}
+.meta{color:var(--muted);font-size:14px;margin-top:3px}
+.note{font-size:14px;margin-top:6px;color:var(--charcoal)}
+.tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:600;padding:2px 9px;border-radius:4px;background:var(--orange-tint);color:var(--orange-dark)}
+.tag.grad{background:var(--grad-tint);color:var(--grad)}
+.tag.old{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
+.links{display:flex;flex-direction:column;align-items:flex-end;gap:6px;white-space:nowrap}
+a.open{display:inline-block;background:var(--orange);color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:7px 14px;border-radius:6px}
+a.open:hover{background:var(--orange-dark)}
+a.open.alt{background:#fff;color:var(--charcoal);border:1.5px solid var(--charcoal)}
+a.open.alt:hover{background:var(--panel)}
+a.src{font-size:13px;color:var(--muted)}
+footer{margin:48px 0 0;background:var(--panel);border-top:4px solid var(--orange);padding:24px 0 36px;color:var(--muted);font-size:14px}
+footer p{margin:0 0 8px;max-width:760px}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .row{grid-template-columns:1fr;gap:4px}
+  .links{flex-direction:row;align-items:center;justify-content:flex-start;margin-top:8px;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="bar"><span>Texas McCombs</span><span>2026-27</span></div>
+    <div class="hero">
+      <h1>McCombs courses with AI in the title</h1>
+      <p>Courses at the McCombs School of Business built around artificial intelligence, each with a copy of its syllabus where one is available. Several run in the course schedule under a generic title such as Topics in Management Information Systems; for those, this page shows the title printed on the syllabus.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="filters" role="group" aria-label="Filter by level">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="ug" aria-pressed="false">Undergraduate</button>
+    <button type="button" data-f="grad" aria-pressed="false">Graduate</button>
+  </div>
+
+  <section>
+    <h2>AI courses with a syllabus <span class="count" id="n-core"></span></h2>
+    <ul class="list" id="core"></ul>
+  </section>
+
+  <section>
+    <h2>Related courses in machine learning and analytics <span class="count" id="n-related"></span></h2>
+    <ul class="list" id="related"></ul>
+  </section>
+
+  <section>
+    <h2>AI courses with no syllabus here yet <span class="count" id="n-missing"></span></h2>
+    <p class="lede">Most of these are graduate courses, which are not required to post syllabi publicly. Where a link is shown, it opens the department course catalog or the curriculum page of the program that offers the course.</p>
+    <ul class="list" id="missing"></ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Each syllabus file is a copy of the version UT Austin posts in its public syllabus repository, except MIS 385N, which is the copy on the instructor's website, and MIS 281N, which the instructor sent. MIS 185N links to its syllabus on Simple Syllabus, and the MBA and Executive MBA course overview is a copy of slides posted by the University of Rochester. Where no 2026-27 syllabus is available, this page shows the most recent one and marks it "Earlier term."</p>
+    <p>An unofficial list, not affiliated with the University of Texas at Austin. Updated <span id="updated"></span>.</p>
+  </div>
+</footer>
+
+<script>
+const UPDATED = "November 19, 2026";
+const UT = id => "https://utdirect.utexas.edu/apps/student/coursedocs/courses/nlogon/download/" + id + "/";
+const S = f => "syllabi/" + f;
+const BTAI = "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-business-technology-and-artificial-intelligence/academics/curriculum/";
+const CAT = "https://catalog.utexas.edu/general-information/coursesatoz/";
+
+// level: "ug" | "grad" | "both"; current: true when the syllabus is from AY 2026-27
+// file: copy hosted on this site; src: the original public copy; srcLabel: its link text
+const CORE = [
+  {code:"MKT 178", title:"Artificial Intelligence in Marketing", who:"Chad Meley", term:"Fall 2026", level:"ug", current:true, file:S("MKT-178_AI-in-Marketing_Meley_Fall-2026.pdf"), src:UT(17373123)},
+  {code:"MKT 188", title:"Artificial Intelligence in Marketing", who:"Chad Meley", term:"Spring 2026", level:"grad", current:false, file:S("MKT-188_AI-in-Marketing-Graduate_Meley_Spring-2026.pdf"), src:UT(16975156)},
+  {code:"MIS 372T", title:"Web Development with AI", who:"Muhammad Jawad", term:"Fall 2026", level:"ug", current:true, file:S("MIS-372T_Web-Development-with-AI_Jawad_Fall-2026.pdf"), src:UT(17376592)},
+  {code:"MKT 382", title:"AI for Competitive Advantage", who:"Ben Bentzin", term:"Fall 2025", level:"grad", current:false, file:S("MKT-382_AI-for-Competitive-Advantage_Bentzin_Fall-2025.pdf"), src:UT(16261209)},
+  {code:"FIN 372T / 397", title:"AI Powered Investments", who:"Travis Johnson", term:"Spring 2026", level:"both", current:false, file:S("FIN-372T-397_AI-Powered-Investments_Johnson_Spring-2026.pdf"), src:UT(16996921), note:"Uses current AI tools as partners in the investment management process."},
+  {code:"MIS / BAX 372T", title:"Gen AI in Business and Social Science", who:"Yan Leng", term:"Fall 2025", level:"ug", current:false, file:S("MIS-BAX-372T_Gen-AI-in-Business-and-Social-Science_Leng_Fall-2025.pdf"), src:UT(16272070)},
+  {code:"MIS 185N", title:"Data Governance and Responsible AI", who:"David Hendrawirawan", term:"Spring 2025", level:"grad", current:false, src:"https://utexas.simplesyllabus.com/doc/8txqm2fq9", srcLabel:"Syllabus on Simple Syllabus", note:"One syllabus covers a three-course series on data and AI."},
+  {code:"MKT 382 / LAW 397S", title:"The Law of Social Media and Artificial Intelligence", who:"John Dzienkowski", term:"Spring 2026", level:"grad", current:false, file:S("MKT-382-LAW-397S_Law-of-Social-Media-and-AI_Dzienkowski_Spring-2026.pdf"), src:UT(16992562)},
+  {code:"MKT 178", title:"Storytizing: Persuasive Selling in the AI Era", who:"Robert Pearson", term:"Fall 2026", level:"ug", current:true, file:S("MKT-178_Storytizing-Persuasive-Selling-in-the-AI-Era_Pearson_Fall-2026.pdf"), src:UT(17373137)},
+  {code:"MIS 281N", title:"AI for Digital Transformation", who:"Indranil Bardhan", term:"Spring 2026", level:"grad", current:false, pending:true, note:"Half-semester elective for MBA and MS students."}
+];
+const RELATED = [
+  {code:"MIS 382N", title:"Advanced Machine Learning", who:"Joydeep Ghosh", term:"Fall 2024", level:"grad", current:false, file:S("MIS-382N_Advanced-Machine-Learning_Ghosh_Fall-2024.pdf"), src:UT(13853578)},
+  {code:"MIS / BAX 372T", title:"Advanced Analytics Programming", who:"Deepayan Chakrabarti", term:"Fall 2026", level:"ug", current:true, file:S("MIS-BAX-372T_Advanced-Analytics-Programming_Chakrabarti_Fall-2026.pdf"), src:UT(17376557)},
+  {code:"BAX 357", title:"Predictive Analytics", who:"Mark Tsechansky", term:"Fall 2026", level:"ug", current:true, file:S("BAX-357_Predictive-Analytics_Tsechansky_Fall-2026.pdf"), src:UT(17381922)},
+  {code:"MIS / MKT 372T", title:"Predictive Analytics and Data Mining", who:"Mark Tsechansky", term:"Fall 2026", level:"ug", current:true, file:S("MIS-MKT-372T_Predictive-Analytics-and-Data-Mining_Tsechansky_Fall-2026.pdf"), src:UT(17373112)},
+  {code:"MIS 285N", title:"Cognitive Computing", who:"Alex Dimakis, Constantine Caramanis", term:"Spring 2022", level:"grad", current:false, file:S("MIS-285N_Cognitive-Computing_Dimakis-Caramanis_Spring-2022.pdf"), src:UT(11823385)},
+  {code:"MIS 385N", title:"Advanced Data Mining and Web Analytics", who:"Mingyuan Zhou", term:"Spring 2020", level:"grad", current:false, file:S("MIS-385N_Advanced-Data-Mining-and-Web-Analytics_Zhou_Spring-2020.pdf"), src:"https://mingyuanzhou.github.io/Papers/syllabus_MIS385_Spring2020_ZHOU.pdf", srcLabel:"Instructor's copy", note:"Covers deep neural networks and deep generative models."},
+  {code:"MBA / Executive MBA", title:"Machine Learning and AI for MBA and Executive Students", who:"Maytal Saar-Tsechansky", term:"2021", level:"grad", current:false, file:S("MBA-EMBA_Machine-Learning-and-AI-Overview_Saar-Tsechansky_2021.pdf"), fileLabel:"Course overview (PDF)", src:"https://platform.simon.rochester.edu/sites/default/files/2023-01/MachineLearning-AI-MBA-ExecEd.pdf", srcLabel:"University of Rochester copy", note:"Slides from a teaching workshop describing the course goals and topics; an overview, not a syllabus."}
+];
+const MISSING = [
+  {code:"MIS 385N.22", title:"Generative Artificial Intelligence I", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
+  {code:"MIS 385N.23", title:"Generative Artificial Intelligence II", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
+  {code:"MIS 385N.18", title:"Problem Solving with Unstructured Data and Generative AI", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
+  {code:"MIS 381N.31", title:"Artificial Intelligence and Machine Learning for Managers", desc:CAT+"mis/", descLabel:"MIS course catalog", level:"grad"},
+  {code:"MIS 385G", title:"Machine Learning and Artificial Intelligence for Executives", desc:CAT+"mis/", descLabel:"MIS course catalog", level:"grad"},
+  {code:"MIS 385N.21", title:"Artificial Intelligence in the Enterprise", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
+  {code:"MIS 385N.16", title:"Math Foundations of Artificial Intelligence", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
+  {code:"MIS 382N.16", title:"Fundamentals of Neural Networks and Machine Learning", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
+  {code:"MIS 385N.20", title:"Risk Governance: AI and Intelligent Automation", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
+  {code:"MIS 381N.32", title:"AI Strategies for Digital Transformation", desc:CAT+"mis/", descLabel:"MIS course catalog", level:"grad"},
+  {code:"MIS 381N.33", title:"Artificial Intelligence in Business and Society", desc:CAT+"mis/", descLabel:"MIS course catalog", level:"grad"},
+  {code:"MIS 381N.34", title:"Artificial Intelligence in Healthcare", desc:CAT+"mis/", descLabel:"MIS course catalog", level:"grad"},
+  {code:"MKT 382.46", title:"Artificial Intelligence for Business Leaders", desc:CAT+"mkt/", descLabel:"MKT course catalog", level:"grad"},
+  {code:"FIN 385F", title:"Analytic Finance and Machine Learning", desc:CAT+"fin/", descLabel:"FIN course catalog", level:"grad"},
+  {code:"MKT 378.4", title:"Sales Technology and Artificial Intelligence", desc:CAT+"mkt/", descLabel:"MKT course catalog", level:"ug"},
+  {code:"MKT (number pending)", title:"Advanced AI Applications in Marketing", who:"Rex Du", term:"Spring 2027", level:"grad", note:"MBA elective first offered in Spring 2027; course number not yet posted."}
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function row(c){
+  const lv = c.level === "both" ? ["ug","grad"] : [c.level];
+  const hasSyl = c.file || c.src;
+  const tags = lv.map(l => `<span class="tag ${l==="grad"?"grad":""}">${l==="grad"?"Graduate":"Undergraduate"}</span>`).join("")
+    + (hasSyl && !c.current ? `<span class="tag old">Earlier term</span>` : "");
+  const meta = c.who ? `<div class="meta">${esc(c.who)} · ${esc(c.term)}</div>` : "";
+  const note = c.note ? `<div class="note">${esc(c.note)}</div>` : "";
+  let links = "";
+  if (c.file) {
+    links = `<a class="open" href="${esc(c.file)}" target="_blank" rel="noopener">${esc(c.fileLabel||"Syllabus (PDF)")}</a>`;
+    if (c.src) links += `<a class="src" href="${esc(c.src)}" target="_blank" rel="noopener nofollow">${esc(c.srcLabel||"UT's copy")}</a>`;
+  } else if (c.src) {
+    links = `<a class="open" href="${esc(c.src)}" target="_blank" rel="noopener nofollow">${esc(c.srcLabel||"Syllabus")}</a>`;
+  } else if (c.desc) {
+    links = `<a class="open alt" href="${esc(c.desc)}" target="_blank" rel="noopener nofollow">${esc(c.descLabel)}</a>`;
+  } else {
+    links = `<span class="src">${c.pending ? "Syllabus coming soon" : "Syllabus not yet available"}</span>`;
+  }
+  return `<li class="row" data-level="${lv.join(" ")}"><div class="code">${esc(c.code)}</div><div><div class="title">${esc(c.title)}</div>${meta}${note}<div class="tags">${tags}</div></div><div class="links">${links}</div></li>`;
+}
+function fill(id, list){
+  document.getElementById(id).innerHTML = list.map(row).join("");
+  document.getElementById("n-"+id).textContent = "(" + list.length + ")";
+}
+document.getElementById("updated").textContent = UPDATED;
+fill("core", CORE); fill("related", RELATED); fill("missing", MISSING);
+document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
+  const f = b.dataset.f;
+  document.querySelectorAll(".filters button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  document.querySelectorAll(".row").forEach(r => { r.hidden = f !== "all" && !r.dataset.level.split(" ").includes(f); });
+}));
+</script>
+</body>
+</html>
