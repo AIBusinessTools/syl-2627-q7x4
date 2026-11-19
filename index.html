@@ -62,8 +62,8 @@ footer p{margin:0 0 8px;max-width:760px}
   <div class="wrap">
     <div class="bar"><span>Texas McCombs</span><span>2026-27</span></div>
     <div class="hero">
-      <h1>McCombs courses with AI in the title</h1>
-      <p>Courses at the McCombs School of Business built around artificial intelligence, each with a copy of its syllabus where one is available. Several run in the course schedule under a generic title such as Topics in Management Information Systems; for those, this page shows the title printed on the syllabus.</p>
+      <h1>McCombs courses in artificial intelligence</h1>
+      <p>This page lists courses at the McCombs School of Business on artificial intelligence and links each to its syllabus where one is available. Several are listed in the course schedule under a generic title such as "Topics in Management Information Systems"; for those, this page shows the title printed on the syllabus.</p>
     </div>
   </div>
 </header>
@@ -82,6 +82,7 @@ footer p{margin:0 0 8px;max-width:760px}
 
   <section>
     <h2>Related courses in machine learning and analytics <span class="count" id="n-related"></span></h2>
+    <p class="lede">Courses that teach the machine learning and data mining methods AI tools rely on, listed for reference.</p>
     <ul class="list" id="related"></ul>
   </section>
 
@@ -94,8 +95,8 @@ footer p{margin:0 0 8px;max-width:760px}
 
 <footer>
   <div class="wrap">
-    <p>Each syllabus file is a copy of the version UT Austin posts in its public syllabus repository, except MIS 385N, which is the copy on the instructor's website, and MIS 281N, which the instructor sent. MIS 185N links to its syllabus on Simple Syllabus, and the MBA and Executive MBA course overview is a copy of slides posted by the University of Rochester. Where no 2026-27 syllabus is available, this page shows the most recent one and marks it "Earlier term."</p>
-    <p>An unofficial list, not affiliated with the University of Texas at Austin. Updated <span id="updated"></span>.</p>
+    <p>Each syllabus file is a copy of the version UT Austin posts in its public syllabus repository, except MIS 385N, which is the copy on the instructor's website, and MKT 282 and the Fall 2026 MKT 382, which the instructor provided. MIS 185N links to its syllabus on Simple Syllabus, and the MBA and Executive MBA course overview is a copy of slides posted by the University of Rochester. Where no 2026-27 syllabus is available, this page shows the most recent one and marks it "Earlier term."</p>
+    <p>This is an unofficial list, not a University of Texas at Austin publication. Updated <span id="updated"></span>.</p>
   </div>
 </footer>
 
@@ -112,8 +113,9 @@ const CORE = [
   {code:"MKT 178", title:"Artificial Intelligence in Marketing", who:"Chad Meley", term:"Fall 2026", level:"ug", current:true, file:S("MKT-178_AI-in-Marketing_Meley_Fall-2026.pdf"), src:UT(17373123)},
   {code:"MKT 188", title:"Artificial Intelligence in Marketing", who:"Chad Meley", term:"Spring 2026", level:"grad", current:false, file:S("MKT-188_AI-in-Marketing-Graduate_Meley_Spring-2026.pdf"), src:UT(16975156)},
   {code:"MIS 372T", title:"Web Development with AI", who:"Muhammad Jawad", term:"Fall 2026", level:"ug", current:true, file:S("MIS-372T_Web-Development-with-AI_Jawad_Fall-2026.pdf"), src:UT(17376592)},
-  {code:"MKT 382", title:"AI for Competitive Advantage", who:"Ben Bentzin", term:"Fall 2025", level:"grad", current:false, file:S("MKT-382_AI-for-Competitive-Advantage_Bentzin_Fall-2025.pdf"), src:UT(16261209)},
-  {code:"FIN 372T / 397", title:"AI Powered Investments", who:"Travis Johnson", term:"Spring 2026", level:"both", current:false, file:S("FIN-372T-397_AI-Powered-Investments_Johnson_Spring-2026.pdf"), src:UT(16996921), note:"Uses current AI tools as partners in the investment management process."},
+  {code:"MKT 382", title:"AI for Competitive Advantage", who:"Ben Bentzin", term:"Fall 2026", level:"grad", current:true, file:S("MKT-382_AI-for-Competitive-Advantage_Bentzin_Fall-2026.pdf")},
+  {code:"MKT 282", title:"AI for Business Leaders", who:"Ben Bentzin", term:"Spring 2026", level:"grad", current:false, file:S("MKT-282_AI-for-Business-Leaders_Bentzin_Spring-2026.pdf")},
+  {code:"FIN 372T / 397", title:"AI Powered Investments", who:"Travis Johnson", term:"Spring 2026", level:"both", current:false, file:S("FIN-372T-397_AI-Powered-Investments_Johnson_Spring-2026.pdf"), src:UT(16996921), note:"Students use AI tools to analyze text and data and to design, test, and implement investment ideas."},
   {code:"MIS / BAX 372T", title:"Gen AI in Business and Social Science", who:"Yan Leng", term:"Fall 2025", level:"ug", current:false, file:S("MIS-BAX-372T_Gen-AI-in-Business-and-Social-Science_Leng_Fall-2025.pdf"), src:UT(16272070)},
   {code:"MIS 185N", title:"Data Governance and Responsible AI", who:"David Hendrawirawan", term:"Spring 2025", level:"grad", current:false, src:"https://utexas.simplesyllabus.com/doc/8txqm2fq9", srcLabel:"Syllabus on Simple Syllabus", note:"One syllabus covers a three-course series on data and AI."},
   {code:"MKT 382 / LAW 397S", title:"The Law of Social Media and Artificial Intelligence", who:"John Dzienkowski", term:"Spring 2026", level:"grad", current:false, file:S("MKT-382-LAW-397S_Law-of-Social-Media-and-AI_Dzienkowski_Spring-2026.pdf"), src:UT(16992562)},
@@ -127,7 +129,7 @@ const RELATED = [
   {code:"MIS / MKT 372T", title:"Predictive Analytics and Data Mining", who:"Mark Tsechansky", term:"Fall 2026", level:"ug", current:true, file:S("MIS-MKT-372T_Predictive-Analytics-and-Data-Mining_Tsechansky_Fall-2026.pdf"), src:UT(17373112)},
   {code:"MIS 285N", title:"Cognitive Computing", who:"Alex Dimakis, Constantine Caramanis", term:"Spring 2022", level:"grad", current:false, file:S("MIS-285N_Cognitive-Computing_Dimakis-Caramanis_Spring-2022.pdf"), src:UT(11823385)},
   {code:"MIS 385N", title:"Advanced Data Mining and Web Analytics", who:"Mingyuan Zhou", term:"Spring 2020", level:"grad", current:false, file:S("MIS-385N_Advanced-Data-Mining-and-Web-Analytics_Zhou_Spring-2020.pdf"), src:"https://mingyuanzhou.github.io/Papers/syllabus_MIS385_Spring2020_ZHOU.pdf", srcLabel:"Instructor's copy", note:"Covers deep neural networks and deep generative models."},
-  {code:"MBA / Executive MBA", title:"Machine Learning and AI for MBA and Executive Students", who:"Maytal Saar-Tsechansky", term:"2021", level:"grad", current:false, file:S("MBA-EMBA_Machine-Learning-and-AI-Overview_Saar-Tsechansky_2021.pdf"), fileLabel:"Course overview (PDF)", src:"https://platform.simon.rochester.edu/sites/default/files/2023-01/MachineLearning-AI-MBA-ExecEd.pdf", srcLabel:"University of Rochester copy", note:"Slides from a teaching workshop describing the course goals and topics; an overview, not a syllabus."}
+  {code:"MBA / Executive MBA", title:"Machine Learning and AI for MBA and Executive Students", who:"Maytal Saar-Tsechansky", term:"2021", level:"grad", current:false, file:S("MBA-EMBA_Machine-Learning-and-AI-Overview_Saar-Tsechansky_2021.pdf"), fileLabel:"Course overview (PDF)", src:"https://platform.simon.rochester.edu/sites/default/files/2023-01/MachineLearning-AI-MBA-ExecEd.pdf", srcLabel:"University of Rochester copy", note:"Slides from a teaching workshop that describe the course's goals and topics. They are an overview, not a syllabus."}
 ];
 const MISSING = [
   {code:"MIS 385N.22", title:"Generative Artificial Intelligence I", desc:BTAI, descLabel:"Program curriculum", level:"grad"},
@@ -159,7 +161,7 @@ function row(c){
   let links = "";
   if (c.file) {
     links = `<a class="open" href="${esc(c.file)}" target="_blank" rel="noopener">${esc(c.fileLabel||"Syllabus (PDF)")}</a>`;
-    if (c.src) links += `<a class="src" href="${esc(c.src)}" target="_blank" rel="noopener nofollow">${esc(c.srcLabel||"UT's copy")}</a>`;
+    if (c.src) links += `<a class="src" href="${esc(c.src)}" target="_blank" rel="noopener nofollow">${esc(c.srcLabel||"UT Austin copy")}</a>`;
   } else if (c.src) {
     links = `<a class="open" href="${esc(c.src)}" target="_blank" rel="noopener nofollow">${esc(c.srcLabel||"Syllabus")}</a>`;
   } else if (c.desc) {
