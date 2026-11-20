@@ -86,14 +86,14 @@ footer p{margin:0 0 8px;max-width:760px}
   <section data-sec="ug">
     <h2>Undergraduate AI courses <span class="count" id="n-ug"></span></h2>
     <ul class="list" id="ug"></ul>
-    <h3>Courses with no syllabus here yet <span class="count" id="n-ug-none"></span></h3>
+    <h3>Undergraduate courses with no syllabus here yet <span class="count" id="n-ug-none"></span></h3>
     <ul class="list" id="ug-none"></ul>
   </section>
 
   <section data-sec="grad">
     <h2>Graduate AI courses <span class="count" id="n-grad"></span></h2>
     <ul class="list" id="grad"></ul>
-    <h3>Courses with no syllabus here yet <span class="count" id="n-grad-none"></span></h3>
+    <h3>Graduate courses with no syllabus here yet <span class="count" id="n-grad-none"></span></h3>
     <p class="lede">Graduate courses are not required to post syllabi publicly. Where a link is shown, it opens the department course catalog or the curriculum page of the program that offers the course.</p>
     <ul class="list" id="grad-none"></ul>
   </section>
@@ -200,7 +200,10 @@ const num = (c, lv) => {
   const ns = c.code.match(/\d{3}/g).map(Number);
   return ns.find(n => lv === "ug" ? Math.floor(n/10)%10 < 8 : Math.floor(n/10)%10 >= 8) ?? ns[0];
 };
-const byNumTitle = lv => (a, b) => num(a, lv) - num(b, lv) || a.title.localeCompare(b.title);
+// Sort by credit hours (the number's first digit), then department, then title.
+const credits = (c, lv) => Math.floor(num(c, lv) / 100);
+const dept = c => c.code.match(/^[A-Z ]+?(?= ?\/| \d)/)[0].trim();
+const byNumTitle = lv => (a, b) => credits(a, lv) - credits(b, lv) || dept(a).localeCompare(dept(b)) || a.title.localeCompare(b.title);
 const inLevel = lv => c => c.level === lv || c.level === "both";
 document.getElementById("updated").textContent = UPDATED;
 ["ug", "grad"].forEach(lv => {
