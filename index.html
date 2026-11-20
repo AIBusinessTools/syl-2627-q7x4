@@ -29,6 +29,8 @@ header{background:var(--orange);color:#fff}
 .filters button[aria-pressed="true"]{background:var(--charcoal);color:#fff}
 section{margin:34px 0}
 section h2{font-size:21px;margin:0 0 4px;color:var(--charcoal);font-weight:700;padding-left:12px;border-left:5px solid var(--orange)}
+section h3{font-size:16px;margin:30px 0 0;color:var(--muted);font-weight:700;padding-left:12px;border-left:5px solid var(--line)}
+section[hidden]{display:none}
 section .lede{margin:6px 0 0 17px;color:var(--muted);font-size:15px;max-width:760px}
 .count{color:var(--muted);font-weight:500;font-size:15px}
 ul.list{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--line)}
@@ -81,21 +83,25 @@ footer p{margin:0 0 8px;max-width:760px}
     <button type="button" data-f="grad" aria-pressed="false">Graduate</button>
   </div>
 
-  <section>
-    <h2>AI courses with a syllabus <span class="count" id="n-core"></span></h2>
-    <ul class="list" id="core"></ul>
+  <section data-sec="ug">
+    <h2>Undergraduate AI courses <span class="count" id="n-ug"></span></h2>
+    <ul class="list" id="ug"></ul>
+    <h3>Courses with no syllabus here yet <span class="count" id="n-ug-none"></span></h3>
+    <ul class="list" id="ug-none"></ul>
+  </section>
+
+  <section data-sec="grad">
+    <h2>Graduate AI courses <span class="count" id="n-grad"></span></h2>
+    <ul class="list" id="grad"></ul>
+    <h3>Courses with no syllabus here yet <span class="count" id="n-grad-none"></span></h3>
+    <p class="lede">Graduate courses are not required to post syllabi publicly. Where a link is shown, it opens the department course catalog or the curriculum page of the program that offers the course.</p>
+    <ul class="list" id="grad-none"></ul>
   </section>
 
   <section>
     <h2>Related courses in machine learning and analytics <span class="count" id="n-related"></span></h2>
     <p class="lede">Courses that teach the machine learning and data mining methods AI tools rely on, listed for reference.</p>
     <ul class="list" id="related"></ul>
-  </section>
-
-  <section>
-    <h2>AI courses with no syllabus here yet <span class="count" id="n-missing"></span></h2>
-    <p class="lede">Most of these are graduate courses, which are not required to post syllabi publicly. Where a link is shown, it opens the department course catalog or the curriculum page of the program that offers the course.</p>
-    <ul class="list" id="missing"></ul>
   </section>
 </main>
 
@@ -159,7 +165,7 @@ const MISSING = [
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function row(c){
+function row(c, only){
   const lv = c.level === "both" ? ["ug","grad"] : [c.level];
   const tags = lv.map(l => `<span class="tag ${l==="grad"?"grad":""}">${l==="grad"?"Graduate":"Undergraduate"}</span>`).join("");
   const meta = c.who ? `<div class="meta">${esc(c.who)} · Offered ${esc(c.offered)}</div>` : "";
@@ -182,18 +188,33 @@ function row(c){
   } else {
     links = `<span class="src">${c.pending ? "Syllabus coming soon" : "Syllabus not yet available"}</span>`;
   }
-  return `<li class="row" data-level="${lv.join(" ")}"><div class="code">${esc(c.code)}</div><div><div class="title">${esc(c.title)}</div>${summary}${meta}${contact}${note}<div class="tags">${tags}</div></div><div class="links">${links}</div></li>`;
+  return `<li class="row" data-level="${only || lv.join(" ")}"><div class="code">${esc(c.code)}</div><div><div class="title">${esc(c.title)}</div>${summary}${meta}${contact}${note}<div class="tags">${tags}</div></div><div class="links">${links}</div></li>`;
 }
-function fill(id, list){
-  document.getElementById(id).innerHTML = list.map(row).join("");
+function fill(id, list, only){
+  document.getElementById(id).innerHTML = list.map(c => row(c, only)).join("");
   document.getElementById("n-"+id).textContent = "(" + list.length + ")";
 }
+// AI courses split by level: a middle digit of 7 or lower is undergraduate, 8 or 9 graduate.
+// A cross-listed course (level "both") appears in each section, sorted by that section's number.
+const num = (c, lv) => {
+  const ns = c.code.match(/\d{3}/g).map(Number);
+  return ns.find(n => lv === "ug" ? Math.floor(n/10)%10 < 8 : Math.floor(n/10)%10 >= 8) ?? ns[0];
+};
+const byNumTitle = lv => (a, b) => num(a, lv) - num(b, lv) || a.title.localeCompare(b.title);
+const inLevel = lv => c => c.level === lv || c.level === "both";
 document.getElementById("updated").textContent = UPDATED;
-fill("core", CORE); fill("related", RELATED); fill("missing", MISSING);
+["ug", "grad"].forEach(lv => {
+  const has = CORE.filter(inLevel(lv)).sort(byNumTitle(lv));
+  const none = MISSING.filter(inLevel(lv)).sort(byNumTitle(lv));
+  fill(lv, has, lv); fill(lv+"-none", none, lv);
+  document.getElementById("n-"+lv).textContent = "(" + (has.length + none.length) + ")";
+});
+fill("related", RELATED);
 document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
   const f = b.dataset.f;
   document.querySelectorAll(".filters button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
   document.querySelectorAll(".row").forEach(r => { r.hidden = f !== "all" && !r.dataset.level.split(" ").includes(f); });
+  document.querySelectorAll("section[data-sec]").forEach(sec => { sec.hidden = f !== "all" && sec.dataset.sec !== f; });
 }));
 </script>
 </body>
